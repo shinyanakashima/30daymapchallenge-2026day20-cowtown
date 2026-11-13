@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where cows outnumber people</title>
+<meta name="description" content="Hokkaido's 179 municipalities as equal-sized hexagons, coloured by dairy cattle per resident. #30DayMapChallenge 2026 Day 20: Hexagons.">
+<meta property="og:title" content="Where cows outnumber people">
+<meta property="og:description" content="Hokkaido's 179 municipalities as equal-sized hexagons, coloured by dairy cattle per resident.">
+<meta property="og:image" content="https://shinyanakashima.github.io/30daymapchallenge-2026day20-cowtown/screenshot.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <p class="kicker"><span data-i18n="kicker">#30DayMapChallenge 2026 · Day 20 · Hexagons</span></p>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+  </div>
+</header>
+
+<main>
+  <div class="layout">
+    <section class="intro">
+      <h1 id="headline">In <span class="n">–</span> Hokkaido towns, cows outnumber people.</h1>
+      <p class="dek" data-i18n="dek"></p>
+    </section>
+
+    <section class="mapcol">
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="View">
+          <button type="button" data-view="hex" aria-pressed="true" data-i18n="viewHex">Hexagons</button>
+          <button type="button" data-view="geo" aria-pressed="false" data-i18n="viewGeo">Map</button>
+        </div>
+        <div class="zoom">
+          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+          <button type="button" id="zoom-reset" data-i18n="reset">Reset</button>
+        </div>
+      </div>
+      <div class="mapwrap">
+        <svg id="map" role="img" aria-labelledby="headline"></svg>
+        <div id="tip" class="tip" hidden></div>
+      </div>
+      <p class="viewnote" id="viewnote"></p>
+    </section>
+
+    <div id="legend" class="legend"></div>
+    <section id="detail" class="card detail" aria-live="polite"></section>
+    <section class="card topcard">
+      <h2 data-i18n="topTitle">Most cows per person</h2>
+      <ol id="top10" class="top10"></ol>
+    </section>
+  </div>
+
+  <details class="table-wrap">
+    <summary data-i18n="allTowns">All 179 municipalities</summary>
+    <div class="scroll"><table id="all"><thead></thead><tbody></tbody></table></div>
+  </details>
+
+  <section class="notes">
+    <h2 data-i18n="notesTitle">Notes</h2>
+    <ul id="notes"></ul>
+    <h2 data-i18n="sourcesTitle">Sources</h2>
+    <ul id="sources"></ul>
+    <p class="small" id="credit"></p>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
