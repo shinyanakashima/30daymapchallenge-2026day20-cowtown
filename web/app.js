@@ -295,6 +295,7 @@
       const v = l[el.dataset.i18n];
       if (typeof v === "string") el.textContent = v;
     });
+    document.getElementById("fine").innerHTML = l.fine;
     document.getElementById("notes").innerHTML = l.notes.map((s) => `<li>${s}</li>`).join("");
     document.getElementById("sources").innerHTML = l.sources.map(([s, u]) => `<li><a href="${u}">${s}</a></li>`).join("");
     document.getElementById("credit").innerHTML = `${l.credit}<a href="${REPO}">GitHub</a>`;

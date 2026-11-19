@@ -36,7 +36,8 @@ window.I18N = {
     peoplePer: (n) => `One dairy cow for every ${n} people`,
     region: (r) => `${r} Subprefecture`,
     type: { City: "City", Town: "Town", Village: "Village" },
-    notesTitle: "Notes",
+    notesTitle: "Notes and sources",
+    fine: 'Dairy cattle: 2020 Census of Agriculture. Population: 2025 Census (preliminary). 28 municipalities with withheld figures are hatched. Sources: <a href="https://www.maff.go.jp/hokkaido/toukei/kikaku/database/tikusan/tikusan.html">MAFF</a>, <a href="https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&lid=000001482693">Statistics Bureau</a>, <a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2026.html">National Land Numerical Information</a> (processed).',
     notes: [
       "The two figures come from different years. Dairy cattle: 2020 Census of Agriculture and Forestry (as of 1 February 2020), head of dairy cattle kept by agricultural management entities that keep them for sale. Population: 2025 Population Census, preliminary counts (as of 1 October 2025).",
       "Withheld towns: where very few farms keep dairy cattle, the official table hides the figure (shown as “x”). These 28 municipalities are shown with hatching, left blank and not estimated, and are not counted in the headline number.",
@@ -90,7 +91,8 @@ window.I18N = {
     peoplePer: (n) => `${n}人あたり乳用牛1頭`,
     region: (r) => r + (["空知", "石狩", "後志", "胆振", "渡島", "上川", "オホーツク", "十勝", "釧路"].includes(r) ? "総合振興局" : "振興局"),
     type: { City: "市", Town: "町", Village: "村" },
-    notesTitle: "注記",
+    notesTitle: "注記と出典",
+    fine: '乳用牛は2020年農林業センサス、人口は2025年国勢調査（速報）。数字が秘匿の28市町村は斜線。出典：<a href="https://www.maff.go.jp/hokkaido/toukei/kikaku/database/tikusan/tikusan.html">農林水産省</a>、<a href="https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&lid=000001482693">総務省統計局</a>、<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2026.html">国土数値情報</a>（加工して作成）。',
     notes: [
       "乳用牛の頭数と人口は調査の年が違います。乳用牛の頭数は2020年農林業センサス（2020年2月1日現在）の「販売目的で乳用牛を飼養している農業経営体」の飼養頭数、人口は令和7年国勢調査 人口速報集計（2025年10月1日現在）です。",
       "秘匿の町：乳用牛を飼う経営体が少ない町では、統計表で数字が伏せられています（「x」）。この28市町村は斜線で示し、推測で埋めず、見出しの数にも含めていません。",
