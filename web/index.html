@@ -20,38 +20,46 @@
 </header>
 
 <main>
-  <div class="layout">
-    <section class="intro">
-      <h1 id="headline">In <span class="n">–</span> Hokkaido towns, cows outnumber people.</h1>
-      <p class="dek" data-i18n="dek"></p>
-    </section>
+  <div class="stage">
+    <aside class="panel">
+      <section class="intro">
+        <h1 id="headline">In <span class="n">–</span> Hokkaido towns, cows outnumber people.</h1>
+        <p class="dek" data-i18n="dek"></p>
+      </section>
+      <section id="detail" class="card detail" aria-live="polite"></section>
+      <section class="card topcard">
+        <h2 data-i18n="topTitle">Most cows per person</h2>
+        <ol id="top10" class="top10"></ol>
+      </section>
+    </aside>
 
     <section class="mapcol">
-      <div class="toolbar">
-        <div class="seg" role="group" aria-label="View">
-          <button type="button" data-view="hex" aria-pressed="true" data-i18n="viewHex">Hexagons</button>
-          <button type="button" data-view="geo" aria-pressed="false" data-i18n="viewGeo">Map</button>
-        </div>
-        <div class="zoom">
-          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
-          <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
-          <button type="button" id="zoom-reset" data-i18n="reset">Reset</button>
-        </div>
-      </div>
       <div class="mapwrap">
         <svg id="map" role="img" aria-labelledby="headline"></svg>
+        <div class="ov ov-tools">
+          <div class="seg" role="group" aria-label="View">
+            <button type="button" data-view="hex" aria-pressed="true" data-i18n="viewHex">Hexagons</button>
+            <button type="button" data-view="geo" aria-pressed="false" data-i18n="viewGeo">Map</button>
+          </div>
+          <div class="zoom">
+            <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+            <button type="button" id="zoom-reset" aria-label="Reset zoom">↺</button>
+          </div>
+        </div>
+        <div class="ov ov-legend">
+          <div id="legend" class="legend"></div>
+          <p class="viewnote" id="viewnote"></p>
+        </div>
         <div id="tip" class="tip" hidden></div>
       </div>
-      <p class="viewnote" id="viewnote"></p>
-    </section>
-
-    <div id="legend" class="legend"></div>
-    <section id="detail" class="card detail" aria-live="polite"></section>
-    <section class="card topcard">
-      <h2 data-i18n="topTitle">Most cows per person</h2>
-      <ol id="top10" class="top10"></ol>
     </section>
   </div>
+
+  <section class="about">
+    <h2 data-i18n="aboutTitle">About this map</h2>
+    <p data-i18n="about"></p>
+  </section>
 
   <details class="table-wrap">
     <summary data-i18n="allTowns">All 179 municipalities</summary>

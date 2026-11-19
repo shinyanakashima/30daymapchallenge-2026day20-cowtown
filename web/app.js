@@ -28,7 +28,7 @@
   const svg = d3.select("#map");
   const tip = document.getElementById("tip");
   let towns, byCode, geo, zoom, root, hexLayer, geoLayer, labelLayer;
-  let W, H, hexS;
+  let W, H, hexS, tipTimer;
 
   function ratioOf(t) {
     return t.cattle === null ? null : t.cattle / t.pop;
@@ -104,9 +104,9 @@
       .call(interact);
 
     // Map view: fit Hokkaido (excluding the Northern Territories) into the same box.
-    // Fit Hokkaido proper, leaving room on the right for the Northern Territories outlines.
+    // Fit Hokkaido proper, leaving room for the legend (top left) and the Northern Territories outlines (right).
     const main = { type: "FeatureCollection", features: geo.features.filter((f) => !f.properties.excluded) };
-    const proj = d3.geoTransverseMercator().rotate([-142.8, -43.5]).fitExtent([[12, 12], [W * 0.84, H - 12]], main);
+    const proj = d3.geoTransverseMercator().rotate([-142.8, -43.5]).fitExtent([[W * 0.1, 12], [W * 0.86, H - 12]], main);
     const path = d3.geoPath(proj);
     geoLayer.selectAll("path").data(geo.features).join("path")
       .attr("class", (f) => (f.properties.excluded ? "excluded" : "cell"))
@@ -136,7 +136,15 @@
   }
 
   function interact(sel) {
-    sel.on("click", (ev, t) => { select(t.code); })
+    sel.on("click", (ev, t) => {
+      select(t.code);
+      // On touch screens there is no hover, so show the tooltip briefly.
+      if (ev.pointerType && ev.pointerType !== "mouse") {
+        showTip(ev, t);
+        clearTimeout(tipTimer);
+        tipTimer = setTimeout(hideTip, 2500);
+      }
+    })
       .on("keydown", (ev, t) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); select(t.code); } })
       .on("pointermove", (ev, t) => { if (ev.pointerType === "mouse") showTip(ev, t); })
       .on("pointerleave", hideTip)
@@ -170,7 +178,8 @@
 
   // Fit labels into hexagons; hide them when they would be unreadable.
   function updateLabelSize(k) {
-    const px = svg.node().getBoundingClientRect().width / W; // screen px per svg unit at k=1
+    const box = svg.node().getBoundingClientRect();
+    const px = Math.min(box.width / W, box.height / H); // screen px per svg unit at k=1
     const w = Math.sqrt(3) * hexS * 0.94;
     const show = state.view === "hex";
     labelLayer.style("display", show ? null : "none");
@@ -255,9 +264,9 @@
     document.getElementById("legend").innerHTML = `
       <p class="lt">${l.legendTitle}</p>
       <div class="scale">
-        <div class="arm"><div class="items">${people.map(sw).join("")}</div><p class="cap">← ${l.legendPeople}</p></div>
+        <div class="arm people"><div class="items">${people.map(sw).join("")}</div><p class="cap">${l.legendPeople}</p></div>
         <div class="mid" aria-hidden="true"><i></i><span>1</span></div>
-        <div class="arm"><div class="items">${cows.map(sw).join("")}</div><p class="cap">${l.legendCows} →</p></div>
+        <div class="arm cows"><div class="items">${cows.map(sw).join("")}</div><p class="cap">${l.legendCows}</p></div>
       </div>
       <div class="extra">
         <span class="item"><span class="sw" style="background:${BINS[0].color}"></span>${l.none}</span>
@@ -289,6 +298,9 @@
     document.getElementById("credit").innerHTML = `${l.credit}<a href="${REPO}">GitHub</a>`;
     document.getElementById("viewnote").textContent = state.view === "hex" ? l.viewnoteHex : l.viewnoteGeo;
     document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
+    const reset = document.getElementById("zoom-reset");
+    reset.title = l.reset;
+    reset.setAttribute("aria-label", l.reset);
     hexLayer.selectAll("path").attr("aria-label", (t) => `${fullName(t)}: ${fmtRatio(ratioOf(t))}`);
   }
 
