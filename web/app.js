@@ -225,6 +225,7 @@
     const el = document.getElementById("detail");
     const t = byCode.get(state.selected);
     const l = L();
+    el.classList.toggle("empty", !t);
     if (!t) { el.innerHTML = `<p class="prompt">${l.pickPrompt}</p>`; return; }
     const r = ratioOf(t);
     const other = state.lang === "ja" ? `${t.en}` : t.ja;
@@ -341,7 +342,6 @@
       renderAll();
     }));
     document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
-    state.selected = "01691"; // Betsukai, the town with the most cattle per person
     renderAll();
     highlight(state.selected);
   });
