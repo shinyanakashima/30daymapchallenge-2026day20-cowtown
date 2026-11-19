@@ -82,6 +82,8 @@
     hexS = W / (Math.sqrt(3) * (maxCol + 2));
     H = Math.ceil(hexS * (2.5 + maxRow * 1.5));
     svg.attr("viewBox", `0 0 ${W} ${H}`);
+    // Explicit size and ratio: Safari can collapse a viewBox-only SVG inside a flex column.
+    svg.attr("width", W).attr("height", H).style("aspect-ratio", `${W} / ${H}`);
 
     const defs = svg.append("defs");
     const pat = defs.append("pattern").attr("id", "hatch").attr("patternUnits", "userSpaceOnUse")

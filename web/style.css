@@ -233,7 +233,7 @@ th { position: sticky; top: 0; background: var(--bg); font-weight: 600; color: v
   .detail { order: 3; }
   .topcard { order: 4; }
   .mapwrap { height: auto; display: flex; flex-direction: column; }
-  #map { height: auto; max-height: max(300px, calc(100vh - 350px)); max-height: max(300px, calc(100dvh - 350px)); order: 2; }
+  #map { flex: none; width: 100%; height: auto; max-height: max(300px, calc(100vh - 350px)); max-height: max(300px, calc(100dvh - 350px)); order: 2; }
   .ov { position: static; }
   .ov-tools { order: 1; justify-content: space-between; padding: 8px 8px 0; }
   .ov-legend { order: 3; max-width: none; border: 0; border-top: 1px solid var(--rule); border-radius: 0; background: transparent; }
