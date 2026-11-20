@@ -209,9 +209,12 @@ th { position: sticky; top: 0; background: var(--bg); font-weight: 600; color: v
 .small { font-size: 13px; color: var(--ink-3); }
 
 
-/* Desktop: the legend sits in the empty Sea of Japan at the top left, as a vertical key. */
+/* Desktop: view controls and a vertical key sit in the empty Sea of Japan at the top left;
+   the selected municipality sits at the bottom of the left panel. */
 @media (min-width: 1081px) {
-  .ov-legend { width: 200px; top: 12px; left: 12px; right: auto; bottom: auto; padding: 10px 11px; font-size: 12px; }
+  .ov-tools { left: 12px; right: auto; }
+  .ov-legend { width: 200px; top: 58px; left: 12px; right: auto; bottom: auto; padding: 10px 11px; font-size: 12px; }
+  .panel .detail { margin-top: auto; }
   .legend { font-size: 12px; }
   .legend .scale { flex-direction: column-reverse; align-items: stretch; gap: 4px; }
   .legend .arm { display: flex; flex-direction: column-reverse; }
@@ -224,6 +227,11 @@ th { position: sticky; top: 0; background: var(--bg); font-weight: 600; color: v
   .legend .mid i { width: 28px; height: 2px; }
   .legend .extra { flex-direction: column; gap: 4px; }
   .legend .extra .sw { width: 28px; }
+}
+
+/* Short desktop screens: show the top five only, so the selected town stays on screen. */
+@media (min-width: 1081px) and (max-height: 820px) {
+  .top10 li:nth-child(n + 6) { display: none; }
 }
 
 @media (max-width: 1080px) {

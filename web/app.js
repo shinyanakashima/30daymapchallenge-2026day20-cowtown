@@ -219,6 +219,12 @@
     highlight(code);
     renderDetail();
     d3.selectAll("#top10 li").classed("sel", (t) => t.code === code);
+    // Desktop: keep the detail card visible inside the left panel.
+    const panel = document.querySelector(".panel");
+    if (panel && panel.scrollHeight > panel.clientHeight) {
+      const el = document.getElementById("detail");
+      panel.scrollTop = el.offsetTop + el.offsetHeight - panel.clientHeight;
+    }
   }
 
   function renderDetail() {
